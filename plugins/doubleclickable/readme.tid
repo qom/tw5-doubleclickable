@@ -1,0 +1,3 @@
+title: $:/plugins/qom/doubleclickable/readme
+
+This plugin provides a widget that makes itself and any child widgets or elements "doubleclickable", executing any specified actions in response to a double click.
