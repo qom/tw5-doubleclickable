@@ -2,7 +2,7 @@
     "title": "$:/plugins/qom/doubleclickable",
     "description": "Perform actions when double clicked",
     "author": "Oveek Mallik",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "core-version": ">=5.0.0",
     "source": "https://github.com/qom/tw5-doubleclickable",
     "plugin-type": "plugin",
