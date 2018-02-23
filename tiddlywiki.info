@@ -1,0 +1,18 @@
+{
+	"description": "A widget that makes its contents double clickable and execute supplied actions",
+    "plugins": [
+		"tiddlywiki/tiddlyweb",
+		"tiddlywiki/filesystem",
+    	"doubleclickable"
+    ],
+    "includeWikis": [
+	],
+	"themes": [
+		"tiddlywiki/vanilla",
+		"tiddlywiki/snowwhite"
+	],
+    "build": {
+    	"empty-doubleclickable": [
+        	"--rendertiddler","$:/core/save/all","tw_doubleclickable.html","text/plain"]
+     }
+}

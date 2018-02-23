@@ -1,0 +1,10 @@
+created: 20180219170816178
+modified: 20180219185440660
+tags: 
+title: Double click example
+type: text/vnd.tiddlywiki
+
+
+Double click to fold / unfold this tiddler.
+
+<$doubleclickable actions="""<$action-sendmessage $message="tm-fold-tiddler" $param=<<currentTiddler>> foldedState=<<folded-state>>  />""" attachToTiddler="true"/>
