@@ -1,6 +1,6 @@
 action_widget: [[ActionWidget|https://tiddlywiki.com/#ActionWidgets]]
 created: 20180218170435783
-modified: 20180220023855534
+modified: 20180421173715067
 tags: 
 title: $:/plugins/qom/doubleclickable/usage
 type: text/vnd.tiddlywiki
@@ -8,7 +8,7 @@ type: text/vnd.tiddlywiki
 ! Content and Attributes
 
 |!Attribute |!Description |
-|actions |Actions to be performed when items are dropped |
+|actions |Actions to be performed when items are double clicked |
 |attachToTiddler |Optional. Can be ''true'' or ''false''. Attach double click listener to the tiddler this widget is used in, if true. Otherwise, make a new DOM element and any child elements, or widgets, double clickable. Defaults to false. |
 
 An action can be any {{!!action_widget}}: action-createtiddler, action-deletefield, action-deletetiddler, action-listops, action-navigate, action-sendmessage, action-setfield.

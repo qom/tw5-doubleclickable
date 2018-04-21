@@ -40,16 +40,30 @@ DoubleClickableWidget.prototype.render = function(parent,nextSibling) {
 		classes = (this["class"] || "").split(" ");
 	classes.push("tc-doubleclickable");
 	domNode.className = classes.join(" ");
-	// Add event handlers
-	$tw.utils.addEventListeners(domNode,[
-		{name: "dblclick", handlerObject: this, handlerMethod: "handleDoubleClickEvent"}
-	]);
-	// Insert element
-	parent.insertBefore(domNode,nextSibling);
-	this.renderChildren(domNode,null);
-	this.domNodes.push(domNode);
-	// Stack of outstanding enter/leave events
-	this.currentlyEntered = [];
+	
+    /* 
+    Two modes in which the widget operates:
+	Add only a double click event handler to parent tiddler DOM node without 
+    inserting any new DOM element, or insert a new DOM element with event listener 
+    and render child elements to make a clickable area within the doubleclickable 
+    widget content area (between the widget opening and closing tags). 
+    */
+		if (this.attachToTiddler == "true") {
+			var parentTiddlerNode = this.findParentTiddlerDomNode(parent);
+    	$tw.utils.addEventListeners(parentTiddlerNode,[
+    		{name: "dblclick", handlerObject: this, handlerMethod: "handleDoubleClickEvent"}
+      	]);         
+    } else {
+    	$tw.utils.addEventListeners(domNode,[
+        	{name: "dblclick", handlerObject: this, handlerMethod: "handleDoubleClickEvent"}
+    	]);
+      	// Insert element
+      	parent.insertBefore(domNode,nextSibling);
+      	this.renderChildren(domNode,null);
+      	this.domNodes.push(domNode);
+      	// Stack of outstanding enter/leave events
+      	this.currentlyEntered = [];
+    }
 };
 
 DoubleClickableWidget.prototype.handleDoubleClickEvent  = function(event) {
@@ -68,6 +82,7 @@ Compute the internal state of the widget
 */
 DoubleClickableWidget.prototype.execute = function() {
 	this.doubleclickableActions = this.getAttribute("actions");
+    this.attachToTiddler = this.getAttribute("attachToTiddler");
 	// Make child widgets
 	this.makeChildWidgets();
 };
@@ -82,6 +97,16 @@ DoubleClickableWidget.prototype.refresh = function(changedTiddlers) {
 		return true;
 	}
 	return this.refreshChildren(changedTiddlers);
+};
+  
+/*
+Climb the DOM to find the tiddler that this widget has been added in.
+*/    
+DoubleClickableWidget.prototype.findParentTiddlerDomNode = function(currentDomNode) {
+    while(!currentDomNode.classList.contains("tc-tiddler-frame")) {
+    	currentDomNode = currentDomNode.parentNode;
+    }
+    return currentDomNode;
 };
 
 exports.doubleclickable = DoubleClickableWidget;
