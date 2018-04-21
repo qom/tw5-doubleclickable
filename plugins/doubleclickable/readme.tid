@@ -1,3 +1,8 @@
 title: $:/plugins/qom/doubleclickable/readme
 
-This plugin provides a widget that makes itself and any child widgets or elements "doubleclickable", executing any specified actions in response to a double click.
+This plugin provides a widget that can make wiki elements doubleclickable. It has two modes of operation. 
+
+# make the tiddler containing the widget doubleclickable 
+# render a new DOM element, making it and any child widgets or elements "doubleclickable". 
+
+The widget executes any specified actions in response to a double click.
