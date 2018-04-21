@@ -1,8 +1,6 @@
 {
 	"description": "A widget that makes its contents double clickable and execute supplied actions",
     "plugins": [
-		"tiddlywiki/tiddlyweb",
-		"tiddlywiki/filesystem",
     	"doubleclickable"
     ],
     "includeWikis": [
