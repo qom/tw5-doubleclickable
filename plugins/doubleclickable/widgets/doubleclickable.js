@@ -72,16 +72,23 @@ DoubleClickableWidget.prototype.handleDoubleClickEvent  = function(event) {
 };
 
 DoubleClickableWidget.prototype.performActions = function(title,event) {
-	if(this.doubleclickableActions) {
+	if (this.isEventTargetTextArea(event)) {
+		this.invokeActionString(this.clickInInputAreaActions,this,event,{clickedTiddler: title});
+	} else if(this.doubleclickableActions) {
 		this.invokeActionString(this.doubleclickableActions,this,event,{clickedTiddler: title});
 	}
 };
+
+DoubleClickableWidget.prototype.isEventTargetTextArea = function(event) {
+	return event.target.nodeName === "TEXTAREA";
+}
 
 /*
 Compute the internal state of the widget
 */
 DoubleClickableWidget.prototype.execute = function() {
 	this.doubleclickableActions = this.getAttribute("actions");
+	this.clickInInputAreaActions = this.getAttribute("inputAreaActions")
     this.attachToTiddler = this.getAttribute("attachToTiddler");
 	// Make child widgets
 	this.makeChildWidgets();

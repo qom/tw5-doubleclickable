@@ -1,0 +1,19 @@
+tags: $:/tags/ViewTemplate
+title: $:/om/ui/ViewTemplate/doubleClickableBody
+type: text/vnd.tiddlywiki
+
+<$doubleclickable actions="<$push-tiddlerlinks $$containingTiddler=<<currentTiddler>>/>" inputAreaActions="""<$action-popup-event-coords $state={{{ [<currentTiddler>addprefix[$:/state/popup/insertLink/]] }}}/>""" >
+
+        <$transclude tiddler="$:/core/ui/ViewTemplate/body" />
+
+<$reveal type="popup" state={{{ [<currentTiddler>addprefix[$:/state/popup/tiddlerLinkStack/]] }}}>
+<div class="tc-drop-down">
+
+!!! Grabbed links
+
+{{$:/state/tiddlerLinks}}
+
+</div>
+</$reveal>
+
+</$doubleclickable>
